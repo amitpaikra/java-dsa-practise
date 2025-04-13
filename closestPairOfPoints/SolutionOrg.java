@@ -26,7 +26,7 @@ import java.util.Arrays;
 		this.y = y;
 	}
  }
-public class Solution {
+public class SolutionOrg {
 	
 	private static long getDistance(point a, point b) {
 		return ( ((long)a.x-b.x)*((long)a.x-b.x) + ((long)a.y-b.y)*((long)a.y-b.y) );
@@ -49,9 +49,8 @@ public class Solution {
 	private static long cpMid(point[] points, int length, long distance) {
 		
 		for (int i = 0; i < length; ++i ) {
-			for (int j = i + 1; j < length && (points[j].y - points[i].y) < distance; ++j) {
-				if ((points[j].y - points[i].y) < distance)
- {
+			for (int j = i+1; j < length; ++j) {
+				if (Math.abs(points[i].y-points[i].y) < distance) {
 					distance = Math.min(distance, getDistance(points[i], points[j]) );
 				}
 			}
@@ -84,23 +83,17 @@ public class Solution {
 		int LRSY=0, RRSY=0;
 		//pf ("sortedY:"+sortedY.length+", lRSY:"+leftRegionSortedY.length+"rrsy:"+rightRegionSortedY.length );
 		for (int i = 0; i < sortedY.length; ++i) {
-			// pf ("LRSY: " + LRSY + ", mid: " + mid + ", RRSY: " + RRSY );
-			// if ( LRSY < mid && sortedY[i].x <= midPoint.x ) {
-			// 	leftRegionSortedY[LRSY++] = sortedY[i];
-			// }
-			// else {
-			// 	// if (RRSY >= rightRegionSortedY.length ) {
-			// 	// 	pf("Cause RRSY point fault");
-			// 	// 	// return 2;
-			// 	// }
-			// 	rightRegionSortedY[RRSY++] = sortedY[i];
-			// }
-			if (LRSY < mid && sortedY[i].x < midPoint.x) {
+			pf ("LRSY: " + LRSY + ", mid: " + mid + ", RRSY: " + RRSY );
+			if ( LRSY < mid && sortedY[i].x <= midPoint.x ) {
 				leftRegionSortedY[LRSY++] = sortedY[i];
-			} else {
+			}
+			else {
+				// if (RRSY >= rightRegionSortedY.length ) {
+				// 	pf("Cause RRSY point fault");
+				// 	// return 2;
+				// }
 				rightRegionSortedY[RRSY++] = sortedY[i];
 			}
-			
 		}
 
 		int LRSX = 0, RRSX=0;
